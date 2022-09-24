@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+   
+	<style >
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+
+*{
+   font-family: 'Montserrat', sans-serif;
+   margin:0; padding:0;
+   box-sizing: border-box;
+   outline: none; border:none;
+   text-decoration: none;
+   text-transform: capitalize;
+   transition: all .2s linear;
+}
+
+body{
+
+
+ background-color: #dc143c22; 
+}
+/*
+.container{
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  padding:25px 20px;
+  
+}
+
+.container .heading{
+  font-size: 40px;
+  margin-bottom: 20px;
+  color:#334;
+}
+
+.container .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap:20px;
+}
+
+.container .box-container .box{
+  background-color: #fff;
+  padding:20px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  display: none;
+}
+
+.container .box-container .box:nth-child(1),
+.container .box-container .box:nth-child(2),
+.container .box-container .box:nth-child(3){
+  display: inline-block;
+}
+
+.container .box-container .box .image{
+  margin-bottom: 20px;
+  overflow: hidden;
+  height: 250px;
+  border-radius: 5px;
+}
+
+.container .box-container .box .image img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.container .box-container .box:hover .image img{
+  transform: scale(1.1);
+}
+
+.container .box-container .box .content h3{
+  font-size: 20px;
+  color:#334;
+}
+
+.container .box-container .box .content p{
+  font-size: 15px;
+  color:#777;
+  line-height: 2;
+  padding:15px 0;
+}
+
+.container .box-container .box .content .btn{
+  display: inline-block;
+  padding:10px 30px;
+  border:1px solid #334;
+  color:#334;
+  font-size: 16px;
+}
+
+.container .box-container .box .content .btn:hover{
+  background-color: crimson;
+  border-color: crimson;
+  color:#fff;
+}
+
+.container .box-container .box .content .icons{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top:1px solid #334;
+}
+
+.container .box-container .box .content .icons span{
+  font-size: 14px;
+  color:#777;
+}
+
+.container .box-container .box .content .icons span i{
+  color:crimson;
+  padding-right: 5px;
+}
+
+
+
+#load-more{
+  margin-top: 20px;
+  display: inline-block;
+  padding:13px 30px;
+  border:1px solid #334;
+  color:#334;
+  font-size: 16px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+
+
+#load-more:hover{
+  background-color: crimson;
+  border-color: crimson;
+  color:#fff;
+}
+
+
+
+@media (max-width:450px){
+
+
+  .container .heading{
+    font-size: 25px;
+ 
+ }
+
+  
+.container .box-container{
+  
+  grid-template-columns: 1fr;
+  
+}
+
+
+  .container .box-container .box .image{
+  
+  height: 200px;
+ 
+ }
+
+
+  .container .box-container .box .content p{
+   
+ font-size: 12px;
+ 
+ }
+
+ 
+ .container .box-container .box .content .icons span{
+ 
+   font-size: 12px;
+ 
+ }
+
+
+}
+
+
+
+
+
+
+
+
+
+*/
+
+
+
+
+/* CHATBOX
+=============== */
+.chatbox {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+
+/* CONTENT IS CLOSE */
+.chatbox__support {
+    display: flex;
+    flex-direction: column;
+    background: #eee;
+    width: 300px;
+    height: 350px;
+    z-index: -123456;
+    opacity: 0;
+    transition: all .5s ease-in-out;
+}
+
+/* CONTENT ISOPEN */
+.chatbox--active {
+    transform: translateY(-40px);
+    z-index: 123456;
+    opacity: 1;
+    
+}
+
+/* BUTTON */
+.chatbox__button {
+    text-align: right;
+}
+
+
+/* HEADER */
+.chatbox__header {
+    position: sticky;
+    top: 0;
+    background: orange;
+}
+
+/* MESSAGES */
+.chatbox__messages {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    flex-direction: column-reverse;
+}
+
+.messages__item {
+    background: orange;
+    max-width: 60.6%;
+    width: fit-content;
+}
+
+.messages__item--operator {
+    margin-left: auto;
+}
+
+.messages__item--visitor {
+    margin-right: auto;
+}
+
+/* FOOTER */
+.chatbox__footer {
+    position: sticky;
+    bottom: 0;
+}
+
+
+
+	</style>
+</head>
+<body><!-- 
+  <div class="container">
+
+   <h1 class="heading">our daily posts</h1>
+
+   <div class="box-container">
+
+      <div class="box">
+         <div class="image">
+            <img src="images/img-1.jpg" alt="">
+         </div>
+         <div class="content">
+            <h3>blog title goes here</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+            <a href="#" class="btn">read more</a>
+            <div class="icons">
+               <span> <i class="fas fa-calendar"></i> 21st may, 2022 </span>
+               <span> <i class="fas fa-user"></i> by admin </span>
+            </div>
+         </div>
+      </div>
+
+      <div class="box">
+         <div class="image">
+            <img src="images/img-2.jpg" alt="">
+         </div>
+         <div class="content">
+            <h3>blog title goes here</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+            <a href="#" class="btn">read more</a>
+            <div class="icons">
+               <span> <i class="fas fa-calendar"></i> 21st may, 2022 </span>
+               <span> <i class="fas fa-user"></i> by admin </span>
+            </div>
+         </div>
+      </div>
+
+      <div class="box">
+         <div class="image">
+            <img src="images/img-3.jpg" alt="">
+         </div>
+         <div class="content">
+            <h3>blog title goes here</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+            <a href="#" class="btn">read more</a>
+            <div class="icons">
+               <span> <i class="fas fa-calendar"></i> 21st may, 2022 </span>
+               <span> <i class="fas fa-user"></i> by admin </span>
+            </div>
+         </div>
+      </div>
+
+      <div class="box">
+         <div class="image">
+            <img src="images/img-4.jpg" alt="">
+         </div>
+         <div class="content">
+            <h3>blog title goes here</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+            <a href="#" class="btn">read more</a>
+            <div class="icons">
+               <span> <i class="fas fa-calendar"></i> 21st may, 2022 </span>
+               <span> <i class="fas fa-user"></i> by admin </span>
+            </div>
+         </div>
+      </div>
+
+      <div class="box">
+         <div class="image">
+            <img src="images/img-5.jpg" alt="">
+         </div>
+         <div class="content">
+            <h3>blog title goes here</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+            <a href="#" class="btn">read more</a>
+            <div class="icons">
+               <span> <i class="fas fa-calendar"></i> 21st may, 2022 </span>
+               <span> <i class="fas fa-user"></i> by admin </span>
+            </div>
+         </div>
+      </div>
+
+      <div class="box">
+         <div class="image">
+            <img src="images/img-6.jpg" alt="">
+         </div>
+         <div class="content">
+            <h3>blog title goes here</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+            <a href="#" class="btn">read more</a>
+            <div class="icons">
+               <span> <i class="fas fa-calendar"></i> 21st may, 2022 </span>
+               <span> <i class="fas fa-user"></i> by admin </span>
+            </div>
+         </div>
+      </div>
+
+      <div class="box">
+         <div class="image">
+            <img src="images/img-7.jpg" alt="">
+         </div>
+         <div class="content">
+            <h3>blog title goes here</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+            <a href="#" class="btn">read more</a>
+            <div class="icons">
+               <span> <i class="fas fa-calendar"></i> 21st may, 2022 </span>
+               <span> <i class="fas fa-user"></i> by admin </span>
+            </div>
+         </div>
+      </div>
+
+      <div class="box">
+         <div class="image">
+            <img src="images/img-8.jpg" alt="">
+         </div>
+         <div class="content">
+            <h3>blog title goes here</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+            <a href="#" class="btn">read more</a>
+            <div class="icons">
+               <span> <i class="fas fa-calendar"></i> 21st may, 2022 </span>
+               <span> <i class="fas fa-user"></i> by admin </span>
+            </div>
+         </div>
+      </div>
+
+      <div class="box">
+         <div class="image">
+            <img src="images/img-9.jpg" alt="">
+         </div>
+         <div class="content">
+            <h3>blog title goes here</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, adipisci!</p>
+            <a href="#" class="btn">read more</a>
+            <div class="icons">
+               <span> <i class="fas fa-calendar"></i> 21st may, 2022 </span>
+               <span> <i class="fas fa-user"></i> by admin </span>
+            </div>
+         </div>
+      </div>
+
+   </div>
+
+   <div id="load-more"> load more </div>
+
+</div>
+ -->
+
+
+
+
+
+
+<section>
+   <div class="chatbox">
+    <div class="chatbox__support">
+        <div class="chatbox__header">
+            Chat support!
+        </div>
+        <div class="messages">
+            <div>
+                <div class="messages__item--visitor">
+                    Hi!
+                </div>
+                <div class="messages__item--operator">
+                    What is it?
+                </div>
+                .<div class="messages__item--typing">
+                    <span class="messages__dot"></span>
+                    <span class="messages__dot"></span>
+                    <span class="messages__dot"></span>
+                </div>
+            </div>
+        </div>
+        <div class="chatbox__footer">
+            <input type="text" placeholder="Write a message">
+        </div>
+    </div>
+    <div class="chatbox__button">
+        <button>I'm a button!</button>
+    </div>
+</div>
+</section>
+
+<!-- <script>
+
+let loadMoreBtn = document.querySelector('#load-more');
+let currentItem = 3;
+
+loadMoreBtn.onclick = () =>{
+   let boxes = [...document.querySelectorAll('.container .box-container .box')];
+   for (var i = currentItem; i < currentItem + 3; i++){
+      boxes[i].style.display = 'inline-block';
+   }
+   currentItem += 3;
+
+   if(currentItem >= boxes.length){
+      loadMoreBtn.style.display = 'none';
+   }
+}</script> -->
+<script>
+   
+   const chatButton = document.querySelector('.chatbox__button');
+const chatContent = document.querySelector('.chatbox__support');
+const icons = {
+    isClicked: 'Clicked',
+    isNotClicked: 'Not Clicked" />'
+}
+const chatbox = new InteractiveChatbox(chatButton, chatContent, icons);
+chatbox.display();
+chatbox.toggleIcon(false, chatButton);
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+class InteractiveChatbox {
+    constructor(a, b) {
+    constructor(a, b, c) {
+        this.args = {
+            button: a,
+            chatbox: b
+        }
+        this.icons = c;
+        this.state = false; 
+    }
+
+@@ -15,14 +16,27 @@ class InteractiveChatbox {
+
+    toggleState(chatbox) {
+        this.state = !this.state;
+        this.showOrHide(chatbox);
+        this.showOrHideChatBox(chatbox, this.args.button);
+    }
+
+    showOrHide(chatbox) {
+    showOrHideChatBox(chatbox, button) {
+        if(this.state) {
+            chatbox.classList.add('chatbox--active')
+            this.toggleIcon(true, button);
+        } else if (!this.state) {
+            chatbox.classList.remove('chatbox--active')
+            this.toggleIcon(false, button);
+        }
+    }
+
+    toggleIcon(state, button) {
+        const { isClicked, isNotClicked } = this.icons;
+        let b = button.children[0].innerHTML;
+
+        if(state) {
+            button.children[0].innerHTML = isClicked; 
+        } else if(!state) {
+            button.children[0].innerHTML = isNotClicked;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
